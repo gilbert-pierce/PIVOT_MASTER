@@ -1,0 +1,5 @@
+{
+  "name": "PivotMaster",
+  "description": "A powerful, client-side data pivot tool with customizable rows, columns, and values.",
+  "requestFramePermissions": []
+}

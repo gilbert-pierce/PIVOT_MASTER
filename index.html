@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PivotMaster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --sidebar-bg: #0f172a;
+        --sidebar-border: #1e293b;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        overscroll-behavior: none; /* Prevent macos bounce */
+      }
+
+      /* Custom Scrollbars */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+      
+      /* Dark Scrollbars for sidebar */
+      .dark-scroll::-webkit-scrollbar-thumb {
+        background: #334155;
+      }
+      .dark-scroll::-webkit-scrollbar-thumb:hover {
+        background: #475569;
+      }
+
+      /* Utilities */
+      .no-drag {
+        -webkit-app-region: no-drag;
+      }
+      .drag {
+        -webkit-app-region: drag;
+      }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0",
+    "xlsx": "https://esm.sh/xlsx@0.18.5",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+  </head>
+  <body class="bg-slate-50 text-slate-900 overflow-hidden h-screen w-screen selection:bg-indigo-500 selection:text-white">
+    <div id="root" class="h-full w-full"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>

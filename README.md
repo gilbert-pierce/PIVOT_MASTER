@@ -1,11 +1,20 @@
-<div align="center">
+# PivotMaster
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+A high-performance, client-side data analysis tool modeled after desktop spreadsheets. Built with React and Tailwind CSS.
 
-  <h1>Built with AI Studio</h2>
+## Features
+- **Local Processing**: Analyze CSV, Excel, or JSON files entirely in the browser.
+- **Pivot Engine**: Drag & Drop fields to configure rows, columns, and values.
+- **Visualization**: Toggle between Data Grid and Heatmap modes.
+- **Export**: Save results to Excel.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## Tech Stack
+- **React 18**: UI Framework
+- **Tailwind CSS**: Styling
+- **SheetJS (xlsx)**: File parsing
+- **Lucide React**: Icons
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## Usage
+1. Drag a data file onto the window.
+2. Use the left sidebar to add fields to "Row Groups", "Column Groups", or "Values".
+3. The table updates instantly.
