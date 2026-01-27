@@ -1,14 +1,13 @@
-export type AggregatorType = 'sum' | 'count' | 'avg' | 'min' | 'max' | 'median';
+export type AggregatorType = 'sum' | 'count' | 'avg' | 'min' | 'max' | 'median' | 'distinctCount';
 
-export interface PivotValue {
-  id: string; // Unique identifier for the metric column
-  field: string;
-  aggregator: AggregatorType;
-}
+export type FilterOperator = 'in' | 'eq' | 'neq' | 'gt' | 'gte' | 'lt' | 'lte' | 'between';
 
 export interface FilterCondition {
   field: string;
-  values: string[]; // "In" logic
+  operator: FilterOperator;
+  values: string[]; // 用于 'in' 模式
+  val1?: string | number; // 用于比较或区间的起始值
+  val2?: string | number; // 用于区间的结束值
 }
 
 export interface CustomBucket {
@@ -17,11 +16,17 @@ export interface CustomBucket {
   filters: FilterCondition[];
 }
 
+export interface PivotValue {
+  id: string; 
+  field: string;
+  aggregator: AggregatorType;
+}
+
 export interface PivotConfig {
   customRows: CustomBucket[];
   customCols: CustomBucket[];
   values: PivotValue[];
-  filters: Record<string, string[]>; // Global pre-filters
+  filters: Record<string, string[]>; 
 }
 
 export interface DataRecord {
@@ -32,15 +37,12 @@ export interface PivotNode {
   key: string;
   label: string;
   children?: PivotNode[];
-  // For rows, 'values' holds the computed metrics for each column intersection
-  // Key = `${ColKey}||${ValueID}`
   values?: Record<string, number>; 
   isLeaf?: boolean;
 }
 
 export interface PivotResult {
   rowNodes: PivotNode[];
-  colNodes: PivotNode[]; // The column headers tree
-  // A list of flattened column keys to help the renderer know what columns to show in order
+  colNodes: PivotNode[]; 
   flatColHeaders: { key: string; label: string; metric: PivotValue }[]; 
 }

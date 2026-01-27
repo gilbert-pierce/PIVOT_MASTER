@@ -11,13 +11,10 @@
         --sidebar-bg: #0f172a;
         --sidebar-border: #1e293b;
       }
-      
       body {
         font-family: 'Inter', sans-serif;
-        overscroll-behavior: none; /* Prevent macos bounce */
+        overscroll-behavior: none;
       }
-
-      /* Custom Scrollbars */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
@@ -32,21 +29,11 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
       }
-      
-      /* Dark Scrollbars for sidebar */
       .dark-scroll::-webkit-scrollbar-thumb {
         background: #334155;
       }
       .dark-scroll::-webkit-scrollbar-thumb:hover {
         background: #475569;
-      }
-
-      /* Utilities */
-      .no-drag {
-        -webkit-app-region: no-drag;
-      }
-      .drag {
-        -webkit-app-region: drag;
       }
     </style>
     <script type="importmap">
@@ -58,8 +45,8 @@
     "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
     "lucide-react": "https://esm.sh/lucide-react@0.344.0",
     "xlsx": "https://esm.sh/xlsx@0.18.5",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
   }
 }
 </script>

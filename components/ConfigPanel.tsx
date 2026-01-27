@@ -45,12 +45,14 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({ fields, config, onConfigChang
     onConfigChange({ ...config, values: newValues });
   };
 
-  const AggregatorOptions = [
+  const AggregatorOptions: { value: AggregatorType; label: string }[] = [
     { value: 'sum', label: 'SUM' },
     { value: 'count', label: 'COUNT' },
+    { value: 'distinctCount', label: 'DISTINCT' },
     { value: 'avg', label: 'AVG' },
     { value: 'min', label: 'MIN' },
     { value: 'max', label: 'MAX' },
+    { value: 'median', label: 'MEDIAN' },
   ];
 
   return (
