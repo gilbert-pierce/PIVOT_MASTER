@@ -1,0 +1,56 @@
+# 在 GitHub 托管的 Windows x64 上原生构建（推荐做法）。
+# 从 macOS 交叉编译 Tauri/Windows 需要 MSVC + WebView2 等完整链，维护成本高；
+# 用 CI 在 windows-latest 上构建即可得到可在 Win10 x64 离线运行的安装包与主程序 exe。
+name: Build Windows x64
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows-x64:
+    runs-on: windows-latest
+    timeout-minutes: 90
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      # 只打 NSIS，跳过 MSI（WiX/light.exe 在部分 runner 上不稳定）——与「错误汇总」里一致
+      - name: Build Tauri (Windows)
+        run: npm run tauri build -- --bundles nsis --ci
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pivotmaster-windows-x64
+          # 原生构建一般是 target/release/；若将来加了 --target 三件套，产物会在 target/<triple>/release/
+          path: |
+            src-tauri/target/**/release/app.exe
+            src-tauri/target/**/release/bundle/
+          if-no-files-found: warn
