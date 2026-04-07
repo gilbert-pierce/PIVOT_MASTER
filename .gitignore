@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Prompt migration dumps (filenames use ISO time with ":" — invalid on Windows / breaks git checkout on Actions)
+migrated_prompt_history/
